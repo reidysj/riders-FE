@@ -53,8 +53,7 @@ const Login = props => {
         >
           Remember Me?
         </Checkbox>
-        {/* <Button onClick={handleSubmit} variant='outline' variantColor='yellow'>Login</Button> */}
-        <Input as={Button} type='submit' variant='outline' borderColor='yellow.500' color='yellow.600' bg='yellow.50' _hover={{bg: 'yellow.100'}}>Log In </Input>
+         <Button type='submit' variantColor='yellow'>Log In</Button>
       </Stack>
     </form>
   );

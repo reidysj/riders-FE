@@ -15,3 +15,14 @@ export const postUser = userData => dispatch => {
         dispatch({type: SET_ERROR, payload: err})
     })
 }
+
+export const requestUser = userData => dispatch => {
+    dispatch({type: POST_USER})
+    axios.post('http://localhost:7000/contacts', userData)
+    .then(res => {
+        dispatch({type: SET_USER, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type: SET_ERROR, payload: err})
+    })
+}

@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 import Login from "./login";
 import Home from './home'
+import Contact from "./contact";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       </Route>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path='/contact'>
+        <Contact />
       </Route>
     </ThemeProvider>
   );
