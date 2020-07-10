@@ -7,30 +7,21 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import {persistStore, persistReducer} from 'redux-persist'
-import {PersistGate} from 'redux-persist/integration/react'
-import storage from 'redux-persist/lib/storage'
+
+// TODO: Configure a redux folder w/ redux persist
+// https://github.com/rt2zz/redux-persist/issues/58
 
 import { usersReducer } from "./reducers/usersReducer";
-
-const persistConfig = {
-  key: 'root',
-  storage,
-}
-
-const persistedReducer = persistReducer(persistConfig, usersReducer)
 
 const store = createStore(usersReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistStore(store)}>
     <Router>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </Router>
-    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
