@@ -9,7 +9,7 @@ import {
   Link,
   Icon,
 } from "@chakra-ui/core";
-import { Link as RRLink } from "react-router-dom";
+import { Link as RRLink, useHistory } from "react-router-dom";
 import { postUser } from "../actions/usersActions";
 import { connect } from "react-redux";
 
@@ -19,6 +19,7 @@ const Form = (props) => {
     password: "",
     rememberMe: false,
   });
+  const history = useHistory()
 
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -30,7 +31,11 @@ const Form = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.postUser(inputs);
+    props.postUser(inputs)
+    .then(res => {
+      history.push('/dashboard')
+    })
+    
   };
 
   return (

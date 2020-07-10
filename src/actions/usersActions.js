@@ -6,7 +6,7 @@ export const SET_ERROR = 'SET_ERROR'
 
 export const postUser = userData => dispatch => {
     dispatch({type:POST_USER })
-    axios.post('http://localhost:7000/auth/login', userData)
+    return axios.post('http://localhost:7000/auth/login', userData)
     .then(res => {
         localStorage.setItem('token', res.data.token)
         dispatch({type: SET_USER, payload: res.data})
