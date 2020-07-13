@@ -3,30 +3,25 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-
-// TODO: Configure a redux folder w/ redux persist
+// issues with persistence? here's the instructions you followed
 // https://github.com/rt2zz/redux-persist/issues/58
+import {PersistGate} from 'redux-persist/integration/react'
+import configureStore from './store'
 
-import { usersReducer } from "./reducers/usersReducer";
-
-const store = createStore(usersReducer, applyMiddleware(thunk));
+const {persistor, store} = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
     <Router>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </Router>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
