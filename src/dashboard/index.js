@@ -1,16 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import AdminDash from './AdminDash'
 
 
 const Dashboard = ({user}) => {
-    console.log(user)
-    return(
-        <h1>{user.user.username}</h1>
-    )
+    
+    if(user.user.user_type === 0){
+
+        return(
+            <AdminDash />
+        )
+    }
 }
 
 const mStP = (state) => {
-    console.log(state)
     return{
         user: state.user
     }

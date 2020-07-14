@@ -7,7 +7,7 @@ const Pillars = () => {
   return (
     <Flex justify="space-around" marginTop="2.5%" lineHeight="1.8">
       {data.map((datum) => {
-        return <Pillar datum={datum} />;
+        return <Pillar datum={datum} key={datum.key}/>;
       })}
     </Flex>
   );
