@@ -3,7 +3,9 @@ import {
     SET_USER,
     SET_ERROR,
     FETCH_PENDING_USERS,
-    SET_PENDING_USERS
+    SET_PENDING_USERS,
+    SET_IS_DELETING,
+    SET_DELETED
 } from '../actions/usersActions'
 
 export const initialState = {
@@ -11,7 +13,8 @@ export const initialState = {
     isPosting: false,
     isFetching: false,
     error: '',
-    pendingUsers: []
+    pendingUsers: [],
+    isDeleting: false,
 }
 
 export const usersReducer = (state=initialState, action) => {
@@ -45,6 +48,16 @@ export const usersReducer = (state=initialState, action) => {
                 isFetching: false,
                 error: '',
                 pendingUsers: action.payload
+            }
+        case SET_IS_DELETING:
+            return{
+                ...state,
+                isDeleting: true
+            }
+        case SET_DELETED:
+            return{
+                ...state,
+                isDeleting: false
             }
         default :
             return state
