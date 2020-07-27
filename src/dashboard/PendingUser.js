@@ -5,6 +5,7 @@ import {userTypeTranslation} from '../utils/userTypeTranslation'
 import {registerUser, deletePendingUser} from '../actions/usersActions'
 import {connect} from 'react-redux'
 
+// 
 const PendingUser = ({user, registerUser, deletePendingUser}) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     

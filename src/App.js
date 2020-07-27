@@ -6,6 +6,7 @@ import Login from "./login";
 import Home from './home'
 import Contact from "./contact";
 import Dashboard from './dashboard'
+import Confirmation from './confirmation'
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route path='/contact'>
         <Contact />
+      </Route>
+      <Route path='/contacted'>
+        <Confirmation />
       </Route>
       {/* Private Routes*/}
       <PrivateRoute path='/dashboard' component={Dashboard} />

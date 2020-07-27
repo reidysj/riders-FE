@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -13,9 +13,10 @@ import {
     Radio,
     FormControl
   } from "@chakra-ui/core";
+  import {connect} from 'react-redux'
 
 
-const UserTypeModal = ({isOpen, onClose, user, registerUser}) => {
+const UserTypeModal = ({ isOpen, onClose, user, registerUser}) => {
     const parsed = `${user.last_name.toLowerCase()}${user.first_name.substring(0, 3).toLowerCase()}`
     const [userData, setUserData] = useState({
         username: parsed,
@@ -29,7 +30,11 @@ const UserTypeModal = ({isOpen, onClose, user, registerUser}) => {
 
     const handleChange = e => {
         setUserData({...userData, user_type: e.target.value})
-        console.log(userData)
+    }
+
+    const handleApproveUser = (user) => {
+        registerUser(user)
+        onClose()
     }
 
     return(
@@ -48,11 +53,18 @@ const UserTypeModal = ({isOpen, onClose, user, registerUser}) => {
                     </FormControl>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={_ => registerUser(userData)}>Submit</Button>
+                    <Button onClick={_ => handleApproveUser(userData)}>Submit</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
     )
 }
 
-export default UserTypeModal
+const mStP = state => {
+    console.log(state)
+    return {
+        error: state.error,
+    }
+}
+
+export default connect(mStP)(UserTypeModal)

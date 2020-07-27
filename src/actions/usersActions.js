@@ -51,7 +51,7 @@ export const registerUser = userData => dispatch => {
         console.log(res.data)
     })
     .catch(err => {
-        console.log(err)
+        console.log(err.response.data.message)
         dispatch({type: SET_ERROR, payload: err})
     })
 }
