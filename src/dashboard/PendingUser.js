@@ -12,7 +12,7 @@ const PendingUser = ({user, registerUser, deletePendingUser}) => {
 
     return(
     <>
-        <Flex direction='column'>
+        <Flex direction='column' border='1px solid black'>
             <Text>{user.first_name}</Text>
             <Text>{user.last_name}</Text>
             <Text>{user.email}</Text>

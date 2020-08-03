@@ -23,6 +23,7 @@ const AdminDash = ({ getPendingUsers, pendingUsers }) => {
 };
 
 const mStP = (state) => {
+  console.log(state, 'from admin dash')
   return {
     isFetching: state.isFetching,
     pendingUsers: state.pendingUsers,

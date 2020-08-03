@@ -5,7 +5,8 @@ import {
     FETCH_PENDING_USERS,
     SET_PENDING_USERS,
     SET_IS_DELETING,
-    SET_DELETED
+    SET_DELETED,
+    POST_USER_SUCCESS
 } from '../actions/usersActions'
 
 export const initialState = {
@@ -23,6 +24,12 @@ export const usersReducer = (state=initialState, action) => {
             return{
                 ...state,
                 isPosting: true
+            }
+        case POST_USER_SUCCESS:
+            console.log('payload',action.payload)
+            return{
+                ...state,
+                pendingUsers: state.pendingUsers.filter(user => user.id !== action.payload.id)
             }
         case SET_USER :
             return{
@@ -57,6 +64,7 @@ export const usersReducer = (state=initialState, action) => {
         case SET_DELETED:
             return{
                 ...state,
+                pendingUsers: state.pendingUsers.filter(user => user.id !== action.payload.id),
                 isDeleting: false
             }
         default :
